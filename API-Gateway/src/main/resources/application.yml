@@ -1,0 +1,47 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: API-GATEWAY
+
+
+  cloud:
+    gateway:
+      routes:
+        - id: USER-SERVICE
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/users/**
+         # filters:
+           # - name: CircuitBreaker
+            #  args:
+             #    name: USER-SERVICE
+               #  fallbackuri: forward:/userServiceFallback
+
+        - id: HOTEL-SERVICE
+          uri: lb://HOTEL-SERVICE
+          predicates:
+            - Path=/hotels/**
+          #filters:
+           # - name: CircuitBreaker
+            #  args:
+             #   name: HOTEL-SERVICE
+                #fallbackuri: forward:/hotelServiceFallback
+
+        - id: RATING-SERVICE
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/ratings/**
+         # filters:
+          #  - name: CircuitBreaker
+           #   args:
+            #    name: RATING-SERVICE
+             #   #fallbackuri: forward:/ratingServiceFallback
+
+  config:
+    import: configserver:http://localhost:8086
+
+
+
+

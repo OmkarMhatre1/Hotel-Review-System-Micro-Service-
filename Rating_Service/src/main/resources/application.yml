@@ -1,0 +1,17 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/ratingservice
+    username: root
+    password: Omkar66527
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+  application:
+    name: RATING-SERVICE
+
+  config:
+    import: configserver:http://localhost:8086
+
