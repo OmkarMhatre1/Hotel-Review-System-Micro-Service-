@@ -31,6 +31,8 @@ public class userController {
 
     @GetMapping("/{userId}")
     @CircuitBreaker(name = "CktBreaker",fallbackMethod = "ratingHotelFallback")
+    //for retry
+   // @Retry(name = "CktBreaker",fallbackMethod = "ratingHotelFallback")
     public ResponseEntity<User> getSingleUser(@PathVariable int userId){
         User user = userService.getUser(userId);
         return ResponseEntity.ok(user);
