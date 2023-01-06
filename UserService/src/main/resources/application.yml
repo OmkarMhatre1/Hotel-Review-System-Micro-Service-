@@ -48,7 +48,7 @@ resilience4j:
        # waitDuration: 2s
 
   #ratelimiter:
-   # instances:
-    #  CktBreaker:
-     #   limitRefreshPeriod: 4s
-      # timeoutDuration: 0s
+   #instances:
+    #CktBreaker:
+     #limitRefreshPeriod: 4s
+      #timeoutDuration: 0s
