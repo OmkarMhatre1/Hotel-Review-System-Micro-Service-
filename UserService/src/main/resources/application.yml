@@ -46,3 +46,9 @@ resilience4j:
      # CktBreaker:
       #  maxAttempts: 3
        # waitDuration: 2s
+
+  #ratelimiter:
+   # instances:
+    #  CktBreaker:
+     #   limitRefreshPeriod: 4s
+      # timeoutDuration: 0s
