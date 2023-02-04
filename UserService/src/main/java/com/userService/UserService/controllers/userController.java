@@ -4,6 +4,8 @@ import com.userService.UserService.entity.User;
 import com.userService.UserService.services.UserService;
 import com.userService.UserService.services.impl.UserServiceImpl;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.ratelimiter.annotation.RateLimiter;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +20,6 @@ public class userController {
 
     @Autowired
     private UserService userService;
-
-
-
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody User user){
@@ -42,6 +41,8 @@ public class userController {
     //fallback method using circuitbreaker
     public ResponseEntity<User> ratingHotelFallback(int userId, Exception ex){
        // System.out.println("Service is down");
+        ex.printStackTrace();
+
         User user = User.builder()
                 .email("dummy email")
                 .name("dummy")

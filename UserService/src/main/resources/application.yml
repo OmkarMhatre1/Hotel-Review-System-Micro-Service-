@@ -13,6 +13,25 @@ spring:
 
   config:
     import: configserver:http://localhost:8086
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://dev-34099492.okta.com/oauth2/default
+      client:
+        registration:
+          my-internal-client:
+            provider: okta
+            authorizationGrantType: client_credentials
+            scope: internal
+            clientId: 0oa7y3blndIXkrQpJ5d7
+            clientSecret: 3AePzYCVPtkusLcoLefK1E0xq8Sc1Ri8PjJ5UEIn
+
+        provider:
+          okta:
+            issuerUri: https://dev-34099492.okta.com/oauth2/default
+
+
 
 management:
   health:
@@ -40,7 +59,6 @@ resilience4j:
         slidingWindowSize: 10
         slidingWindowType: COUNT_BASED
 
-
   #retry:
     #instances:
      # CktBreaker:
@@ -48,7 +66,12 @@ resilience4j:
        # waitDuration: 2s
 
   #ratelimiter:
-   #instances:
-    #CktBreaker:
-     #limitRefreshPeriod: 4s
-      #timeoutDuration: 0s
+   # instances:
+    #  CktBreaker:
+     #   limitRefreshPeriod: 4s
+      # timeoutDuration: 0s
+
+okta:
+  oauth2:
+    issuer: https://dev-34099492.okta.com/oauth2/default
+    audience: api://default
